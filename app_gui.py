@@ -26,9 +26,12 @@ class AppGui(tkinter.Tk):
         self.button_info = None
         self.title_label = None
         self.title_entry = None
+        self.button_download_frame = None
+        self.button_download = None
         self.create_link_box()
         self.create_button_info()
         self.create_title_box()
+        self.create_button_download()
 
     def initialize_window(self):
         """
@@ -47,7 +50,7 @@ class AppGui(tkinter.Tk):
         self.link_label.pack(pady=10)
 
         self.link_entry = tkinter.Entry(self.link_label, font=("Helvetica", 24))
-        self.link_entry.pack(pady=5, padx=5)
+        self.link_entry.pack(pady=20, padx=20)
 
     def create_button_info(self):
         """
@@ -59,7 +62,7 @@ class AppGui(tkinter.Tk):
 
         self.button_info = tkinter.Button(self.button_info_frame, text="Show info",
                                           command=self.get_title_video)
-        self.button_info.pack(pady=5, padx=5)
+        self.button_info.pack(pady=20, padx=20)
 
     def create_title_box(self):
         """
@@ -71,6 +74,17 @@ class AppGui(tkinter.Tk):
 
         self.title_entry = tkinter.Entry(self.title_label, font=("Helvetica", 24))
         self.title_entry.pack(pady=10, padx=10)
+
+    def create_button_download(self):
+        """
+        Initializing the button which is responsible for downloading the video
+        """
+        self.button_download_frame = tkinter.Frame(self)
+        self.button_download_frame.pack(pady=5, padx=5)
+
+        self.button_download = tkinter.Button(self.button_download_frame, text="Download video",
+                                              command=self.download_video)
+        self.button_download.pack(pady=5, padx=5)
 
     def get_title_video(self):
         """
@@ -86,3 +100,11 @@ class AppGui(tkinter.Tk):
         except pytube.exceptions.RegexMatchError:
             tkinter.messagebox.showwarning("Wrong link provided")
 
+    def download_video(self):
+        """
+        This function invokes function for PytubeAction class
+        """
+        try:
+            self.pytube_actions.download_video()
+        except pytube.exceptions.RegexMatchError:
+            tkinter.messagebox.showwarning("Wrong link provided")

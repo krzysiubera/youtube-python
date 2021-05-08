@@ -28,3 +28,9 @@ class PytubeActions:
         self.title = self.yt.title
         self.app_gui.title_entry.insert(0, self.title)
         
+    def download_video(self):
+        """
+        This function is responsible for downloading the video
+        """
+        
+        self.yt.streams.filter(progressive=True, file_extension='mp4').order_by('resolution').desc().first().download()
