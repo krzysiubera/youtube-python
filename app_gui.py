@@ -49,7 +49,7 @@ class AppGui(tkinter.Tk):
         self.link_label = tkinter.LabelFrame(self, text="Enter your link")
         self.link_label.pack(pady=10)
 
-        self.link_entry = tkinter.Entry(self.link_label, font=("Helvetica", 24))
+        self.link_entry = tkinter.Entry(self.link_label, font=("Helvetica", 24), width=50)
         self.link_entry.pack(pady=20, padx=20)
 
     def create_button_info(self):
@@ -72,7 +72,7 @@ class AppGui(tkinter.Tk):
         self.title_label = tkinter.LabelFrame(self, text="Title of the video")
         self.title_label.pack(pady=5)
 
-        self.title_entry = tkinter.Entry(self.title_label, font=("Helvetica", 24))
+        self.title_entry = tkinter.Entry(self.title_label, font=("Helvetica", 24), width=50)
         self.title_entry.pack(pady=10, padx=10)
 
     def create_button_download(self):
