@@ -96,6 +96,7 @@ class AppGui(tkinter.Tk):
         """
         Initializing the button which is responsible for downloading the video
         """
+
         self.button_download_frame = tkinter.Frame(self)
         self.button_download_frame.pack(pady=5, padx=5)
 
@@ -108,7 +109,6 @@ class AppGui(tkinter.Tk):
         Deleting what is in the title in the title entry box
         and then invoking function from PytubeAction class
         """
-
 
         self.title_entry.delete(0, tkinter.END)
 
@@ -125,8 +125,6 @@ class AppGui(tkinter.Tk):
         """
         try:
             self.pytube_actions.download_video()
-        except pytube.exceptions.RegexMatchError:
-            tkinter.messagebox.showwarning("Wrong link provided")
         except exceptions.FormatNotProvided:
             tkinter.messagebox.showwarning("Format of video has not been provided")
         except:
