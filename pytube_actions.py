@@ -1,4 +1,5 @@
 import pytube
+import exceptions
 
 
 class PytubeActions:
@@ -30,4 +31,9 @@ class PytubeActions:
         This function is responsible for downloading the video
         """
         
-        self.yt.streams.filter(progressive=True, file_extension='mp4').order_by('resolution').desc().first().download()
+        if self.app_gui.format_combobox.get() == "Video":
+            self.yt.streams.filter(progressive=True, file_extension='mp4').order_by('resolution').desc().first().download()
+        elif self.app_gui.format_combobox.get() == "Audio":
+            self.yt.streams.filter(only_audio=True).first().download()
+        else:
+            raise exceptions.FormatNotProvided

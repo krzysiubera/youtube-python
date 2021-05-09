@@ -2,6 +2,8 @@ import tkinter
 from tkinter import messagebox
 import pytube
 from pytube_actions import PytubeActions
+from tkinter import ttk
+import exceptions
 
 class AppGui(tkinter.Tk):
     """
@@ -26,11 +28,14 @@ class AppGui(tkinter.Tk):
         self.button_info = None
         self.title_label = None
         self.title_entry = None
+        self.format_label_frame = None
+        self.format_combobox = None
         self.button_download_frame = None
         self.button_download = None
         self.create_link_box()
         self.create_button_info()
         self.create_title_box()
+        self.create_format_combobox()
         self.create_button_download()
 
     def initialize_window(self):
@@ -75,6 +80,18 @@ class AppGui(tkinter.Tk):
         self.title_entry = tkinter.Entry(self.title_label, font=("Helvetica", 24), width=50)
         self.title_entry.pack(pady=10, padx=10)
 
+    def create_format_combobox(self):
+        """
+        Creating combobox for choosing if we want only audio or video also
+        """
+
+        self.format_label_frame = tkinter.LabelFrame(self, text="Choose video or audio")
+        self.format_label_frame.pack(pady=5)
+
+        self.format_combobox = tkinter.ttk.Combobox(self)
+        self.format_combobox['values'] = ('Audio', 'Video')
+        self.format_combobox.pack(pady=5, padx=5)
+
     def create_button_download(self):
         """
         Initializing the button which is responsible for downloading the video
@@ -99,6 +116,8 @@ class AppGui(tkinter.Tk):
             self.pytube_actions.get_title_video()
         except pytube.exceptions.RegexMatchError:
             tkinter.messagebox.showwarning("Wrong link provided")
+        except:
+            tkinter.messagebox.showwarning("Something else went wrong")
 
     def download_video(self):
         """
@@ -108,3 +127,7 @@ class AppGui(tkinter.Tk):
             self.pytube_actions.download_video()
         except pytube.exceptions.RegexMatchError:
             tkinter.messagebox.showwarning("Wrong link provided")
+        except exceptions.FormatNotProvided:
+            tkinter.messagebox.showwarning("Format of video has not been provided")
+        except:
+            tkinter.messagebox.showwarning("Something else went wrong")
