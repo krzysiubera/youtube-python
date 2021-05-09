@@ -28,7 +28,7 @@ class AppGui(tkinter.Tk):
         self.button_info = None
         self.title_label = None
         self.title_entry = None
-        self.format_label_frame = None
+        self.format_label = None
         self.format_combobox = None
         self.button_download_frame = None
         self.button_download = None
@@ -85,8 +85,8 @@ class AppGui(tkinter.Tk):
         Creating combobox for choosing if we want only audio or video also
         """
 
-        self.format_label_frame = tkinter.LabelFrame(self, text="Choose video or audio")
-        self.format_label_frame.pack(pady=5)
+        self.format_label = tkinter.Label(self, text="Choose video or audio")
+        self.format_label.pack(pady=5)
 
         self.format_combobox = tkinter.ttk.Combobox(self)
         self.format_combobox['values'] = ('Audio', 'Video')
