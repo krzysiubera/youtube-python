@@ -26,11 +26,13 @@ class AppGui(tkinter.Tk):
         self.button_info = None
         self.title_entry = None
         self.format_label = None
+        self.author_entry = None
         self.format_combobox = None
         self.button_download = None
         self.create_link_box()
         self.create_button_info()
         self.create_title_box()
+        self.create_author_box()
         self.create_format_combobox()
         self.create_button_download()
 
@@ -56,6 +58,7 @@ class AppGui(tkinter.Tk):
     def create_button_info(self):
         """
         Initializing the button, which clicking shows us information about the video
+        which is title and author
         """
 
         button_info_frame = tkinter.Frame(self)
@@ -75,6 +78,17 @@ class AppGui(tkinter.Tk):
 
         self.title_entry = tkinter.Entry(title_label, font=("Helvetica", 24), width=50)
         self.title_entry.pack(pady=10, padx=10)
+
+    def create_author_box(self):
+        """
+        Initializing the entry where author of the video shows up
+        """
+
+        author_label = tkinter.LabelFrame(self, text="Author of the video")
+        author_label.pack(pady=5)
+
+        self.author_entry = tkinter.Entry(author_label, font=("Helvetica, 24"), width=50)
+        self.author_entry.pack(pady=10, padx=10)
 
     def create_format_combobox(self):
         """
@@ -102,14 +116,15 @@ class AppGui(tkinter.Tk):
 
     def get_title_video(self):
         """
-        Deleting what is in the title in the title entry box
+        Deleting what is in the title and author in respective entry box
         and then invoking function from PytubeAction class
         """
 
         self.title_entry.delete(0, tkinter.END)
+        self.author_entry.delete(0, tkinter.END)
 
         try:
-            self.pytube_actions.get_title_video()
+            self.pytube_actions.get_title_author_video()
         except pytube.exceptions.RegexMatchError:
             tkinter.messagebox.showwarning("Wrong link provided")
         except:

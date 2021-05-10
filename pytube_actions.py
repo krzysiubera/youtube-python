@@ -16,15 +16,17 @@ class PytubeActions:
         self.app_gui = app_gui
         self.yt = None
 
-    def get_title_video(self):
+    def get_title_author_video(self):
         """
         This function gets the link from link entry box, passes it to Youtube() instance class,
-        retreives title of the video and then updates the title entry box
+        retreives title of the video and updates the title entry box
+        then retreives author of the video and updates the author entry box 
         """
 
         link = self.app_gui.link_entry.get()
         self.yt = pytube.YouTube(link)
         self.app_gui.title_entry.insert(0, self.yt.title)
+        self.app_gui.author_entry.insert(0, self.yt.author)
         
     def download_video(self):
         """
