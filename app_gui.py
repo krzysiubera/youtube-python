@@ -22,13 +22,19 @@ class AppGui(tkinter.Tk):
 
         self.pytube_actions = PytubeActions(self)
 
+        self.link_label = None
         self.link_entry = None
+        self.button_info_frame = None
         self.button_info = None
+        self.title_label = None
         self.title_entry = None
         self.format_label = None
+        self.author_label = None
         self.author_entry = None
         self.format_combobox = None
+        self.button_download_frame = None
         self.button_download = None
+
         self.create_link_box()
         self.create_button_info()
         self.create_title_box()
@@ -49,10 +55,10 @@ class AppGui(tkinter.Tk):
         Initializing the entry box where user pastes his link
         """
 
-        link_label = tkinter.LabelFrame(self, text="Enter your link")
-        link_label.pack(pady=10)
+        self.link_label = tkinter.LabelFrame(self, text="Enter your link")
+        self.link_label.pack(pady=10)
 
-        self.link_entry = tkinter.Entry(link_label, font=("Helvetica", 24), width=50)
+        self.link_entry = tkinter.Entry(self.link_label, font=("Helvetica", 24), width=50)
         self.link_entry.pack(pady=20, padx=20)
 
     def create_button_info(self):
@@ -61,10 +67,10 @@ class AppGui(tkinter.Tk):
         which is title and author
         """
 
-        button_info_frame = tkinter.Frame(self)
-        button_info_frame.pack(pady=5, padx=5)
+        self.button_info_frame = tkinter.Frame(self)
+        self.button_info_frame.pack(pady=5, padx=5)
 
-        self.button_info = tkinter.Button(button_info_frame, text="Show info",
+        self.button_info = tkinter.Button(self.button_info_frame, text="Show info",
                                           command=self.get_title_video)
         self.button_info.pack(pady=20, padx=20)
 
@@ -73,10 +79,10 @@ class AppGui(tkinter.Tk):
         Initializing the entry box where title of the video shows up
         """
 
-        title_label = tkinter.LabelFrame(self, text="Title of the video")
-        title_label.pack(pady=5)
+        self.title_label = tkinter.LabelFrame(self, text="Title of the video")
+        self.title_label.pack(pady=5)
 
-        self.title_entry = tkinter.Entry(title_label, font=("Helvetica", 24), width=50)
+        self.title_entry = tkinter.Entry(self.title_label, font=("Helvetica", 24), width=50)
         self.title_entry.pack(pady=10, padx=10)
 
     def create_author_box(self):
@@ -84,10 +90,10 @@ class AppGui(tkinter.Tk):
         Initializing the entry where author of the video shows up
         """
 
-        author_label = tkinter.LabelFrame(self, text="Author of the video")
-        author_label.pack(pady=5)
+        self.author_label = tkinter.LabelFrame(self, text="Author of the video")
+        self.author_label.pack(pady=5)
 
-        self.author_entry = tkinter.Entry(author_label, font=("Helvetica, 24"), width=50)
+        self.author_entry = tkinter.Entry(self.author_label, font=("Helvetica, 24"), width=50)
         self.author_entry.pack(pady=10, padx=10)
 
     def create_format_combobox(self):
@@ -107,10 +113,10 @@ class AppGui(tkinter.Tk):
         Initializing the button which is responsible for downloading the video
         """
 
-        button_download_frame = tkinter.Frame(self)
-        button_download_frame.pack(pady=5, padx=5)
+        self.button_download_frame = tkinter.Frame(self)
+        self.button_download_frame.pack(pady=5, padx=5)
 
-        self.button_download = tkinter.Button(button_download_frame, text="Download video",
+        self.button_download = tkinter.Button(self.button_download_frame, text="Download video",
                                               command=self.download_video)
         self.button_download.pack(pady=5, padx=5)
 
