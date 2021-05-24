@@ -59,7 +59,7 @@ class AppGui(tkinter.Tk):
         self.link_label.pack(pady=10)
 
         self.link_entry = tkinter.Entry(self.link_label, font=("Helvetica", 24), width=50)
-        self.link_entry.pack(pady=20, padx=20)
+        self.link_entry.pack(pady=5, padx=5)
 
     def create_button_info(self):
         """
@@ -72,7 +72,7 @@ class AppGui(tkinter.Tk):
 
         self.button_info = tkinter.Button(self.button_info_frame, text="Show info",
                                           command=self.get_title_video)
-        self.button_info.pack(pady=20, padx=20)
+        self.button_info.pack(pady=5, padx=5)
 
     def create_title_box(self):
         """
@@ -83,7 +83,7 @@ class AppGui(tkinter.Tk):
         self.title_label.pack(pady=5)
 
         self.title_entry = tkinter.Entry(self.title_label, font=("Helvetica", 24), width=50)
-        self.title_entry.pack(pady=10, padx=10)
+        self.title_entry.pack(pady=5, padx=5)
 
     def create_author_box(self):
         """
@@ -94,7 +94,7 @@ class AppGui(tkinter.Tk):
         self.author_label.pack(pady=5)
 
         self.author_entry = tkinter.Entry(self.author_label, font=("Helvetica, 24"), width=50)
-        self.author_entry.pack(pady=10, padx=10)
+        self.author_entry.pack(pady=5, padx=5)
 
     def create_format_combobox(self):
         """
