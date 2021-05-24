@@ -29,9 +29,9 @@ class AppGui(tkinter.Tk):
         self.title_label = None
         self.title_entry = None
         self.format_label = None
+        self.format_combobox = None
         self.author_label = None
         self.author_entry = None
-        self.format_combobox = None
         self.button_download_frame = None
         self.button_download = None
 
