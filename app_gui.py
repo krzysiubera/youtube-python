@@ -4,11 +4,14 @@ import pytube
 from pytube_actions import PytubeActions
 from tkinter import ttk
 import exceptions
+from tkinter import filedialog
 
 class AppGui(tkinter.Tk):
     """
     A class representing GUI of the application
     """
+
+    initial_path_to_download = r"/Users/krzys/Desktop"
 
     def __init__(self):
         """
@@ -40,6 +43,7 @@ class AppGui(tkinter.Tk):
         self.create_title_box()
         self.create_author_box()
         self.create_format_combobox()
+        self.create_file_path_box()
         self.create_button_download()
 
     def initialize_window(self):
@@ -108,6 +112,20 @@ class AppGui(tkinter.Tk):
         self.format_combobox['values'] = ('Audio', 'Video')
         self.format_combobox.pack(pady=5, padx=5)
 
+    def create_file_path_box(self):
+        """
+        Initializing the place, where path to store downloaded file is inserted
+        """
+        self.file_path_label_frame = tkinter.LabelFrame(self, text='Path to save the video')
+        self.file_path_label_frame.pack(pady=5)
+
+        self.file_path_entry = tkinter.Entry(self.file_path_label_frame, font=("Helvetica, 24"), width=50)
+        self.file_path_entry.pack(pady=5)
+
+        self.file_path_button = tkinter.Button(self.file_path_label_frame, text='Select file path',
+                                                command=self.get_file_path)
+        self.file_path_button.pack(pady=5)
+
     def create_button_download(self):
         """
         Initializing the button which is responsible for downloading the video
@@ -135,6 +153,15 @@ class AppGui(tkinter.Tk):
             tkinter.messagebox.showwarning("Wrong link provided")
         except:
             tkinter.messagebox.showwarning("Something else went wrong")
+
+    def get_file_path(self):
+        """
+        This function is responsible for selecting path to the file
+        """
+
+        self.file_path_entry.delete(0, tkinter.END)
+        self.file_path = tkinter.filedialog.askdirectory(initialdir=AppGui.initial_path_to_download, title='Select file')
+        self.file_path_entry.insert(0, self.file_path)
 
     def download_video(self):
         """

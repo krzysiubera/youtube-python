@@ -34,8 +34,8 @@ class PytubeActions:
         """
         
         if self.app_gui.format_combobox.get() == "Video":
-            self.yt.streams.filter(progressive=True, file_extension='mp4').order_by('resolution').desc().first().download()
+            self.yt.streams.filter(progressive=True, file_extension='mp4').order_by('resolution').desc().first().download(self.app_gui.file_path)
         elif self.app_gui.format_combobox.get() == "Audio":
-            self.yt.streams.filter(only_audio=True).first().download()
+            self.yt.streams.filter(only_audio=True).first().download(self.app_gui.file_path)
         else:
             raise exceptions.FormatNotProvided
