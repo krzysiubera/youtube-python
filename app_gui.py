@@ -11,7 +11,7 @@ class AppGui(tkinter.Tk):
     A class representing GUI of the application
     """
 
-    initial_path_to_download = r"/Users/krzys/Desktop"
+    initial_path_to_download = r"/Users/krzysiu/Desktop"
 
     def __init__(self):
         """
@@ -151,8 +151,8 @@ class AppGui(tkinter.Tk):
             self.pytube_actions.get_title_author_video()
         except pytube.exceptions.RegexMatchError:
             tkinter.messagebox.showwarning("Wrong link provided")
-        except:
-            tkinter.messagebox.showwarning("Something else went wrong")
+        # except:
+            # tkinter.messagebox.showwarning("Something else went wrong")
 
     def get_file_path(self):
         """
