@@ -1,3 +1,4 @@
+import threading
 import tkinter as tk
 import tkinter.filedialog
 import tkinter.messagebox
@@ -54,7 +55,8 @@ class Application(tk.Tk):
         button_download_frame = tk.Frame(self)
         button_download_frame.pack(pady=5, padx=5)
 
-        button_download = tk.Button(button_download_frame, text="Download video", command=self.handle_download_video)
+        button_download = tk.Button(button_download_frame, text="Download video",
+                                    command=self.thread_handle_download_video)
         button_download.pack(pady=5, padx=5)
         return button_download
 
@@ -88,6 +90,10 @@ class Application(tk.Tk):
             tk.messagebox.showerror("Error", "Video unavailable")
         else:
             self.update_list_downloaded_videos()
+
+    def thread_handle_download_video(self) -> None:
+        th = threading.Thread(target=self.handle_download_video, daemon=True)
+        th.start()
 
     def handle_clear_downloaded_videos(self) -> None:
         """ Callback when 'Clear downloaded videos' button is clicked """
