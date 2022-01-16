@@ -27,14 +27,14 @@ class Application(tk.Tk):
 
     def initialize_window(self) -> None:
         self.title('Python Youtube')
-        self.geometry('800x800')
+        self.geometry('600x600')
 
     def create_link_box(self) -> tk.Entry:
         """ Entry where user puts the link to the video """
         link_label = tk.LabelFrame(self, text="Enter your link")
         link_label.pack(pady=10)
 
-        link_entry = tk.Entry(link_label, font=("Helvetica", 24), width=50)
+        link_entry = tk.Entry(link_label, font="Helvetica, 16", width=50)
         link_entry.pack(pady=5, padx=5)
         return link_entry
 
@@ -43,7 +43,7 @@ class Application(tk.Tk):
         file_path_label_frame = tk.LabelFrame(self, text='Path to save the video')
         file_path_label_frame.pack(pady=5)
 
-        file_path_entry = tk.Entry(file_path_label_frame, font="Helvetica, 24", width=50)
+        file_path_entry = tk.Entry(file_path_label_frame, font="Helvetica, 16", width=50)
         file_path_entry.pack(pady=5)
         file_path_button = tk.Button(file_path_label_frame, text="Select file path",
                                      command=self.handle_select_file_path)
